@@ -21,6 +21,10 @@ export default function App() {
     divHeight: 300,
   });
 
+  if (state.contacts > 4) {
+    setState({ divHeight: state.contacts.length * 60 });
+  }
+
   useEffect(() => {
     const storedContacts = localStorage.getItem('contacts');
     if (storedContacts) {
