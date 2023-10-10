@@ -22,7 +22,7 @@ export default function App() {
   });
 
   if (state.contacts > 4) {
-    setState({ divHeight: state.contacts.length * 60 });
+    setState({ divHeight: state.contacts.length * 60 + 60 });
   }
 
   useEffect(() => {
