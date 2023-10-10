@@ -13,13 +13,14 @@ const initialContacts = [
 ];
 
 export default function App() {
-  const [state, setState] = useState({
+  const data = {
     contacts: initialContacts,
     filter: '',
     name: '',
     number: '',
     divHeight: 300,
-  });
+  };
+  const [state, setState] = useState(data);
 
   if (state.contacts > 4) {
     setState({ divHeight: state.contacts.length * 60 + 60 });
