@@ -29,7 +29,7 @@ export default function ContactForm({ onSubmit }) {
           className={styles.form_input}
           type="text"
           name="name"
-          pattern="^[a-zA-Z]+(([' -][a-zA-Z ])?[a-zA-Z]*)*$"
+          pattern="^[a-zA-Z]+([-' ][a-zA-Z]+)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           placeholder="Enter a name"
@@ -40,7 +40,7 @@ export default function ContactForm({ onSubmit }) {
           className={styles.form_input}
           type="tel"
           name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          pattern="^\\+?\\d{1,4}[-.\\s]?\\(\\d{1,3}\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           placeholder="Enter a phone number"

@@ -12,21 +12,17 @@ const initialContacts = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-//* localstorage key
-const STORAGE_KEY = 'phonebookContacts';
-
-const initialState = {
-  contacts: initialContacts,
-  filter: '',
-  name: '',
-  number: '',
-};
-
 export default function App() {
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState({
+    contacts: initialContacts,
+    filter: '',
+    name: '',
+    number: '',
+    divHeight: 300,
+  });
 
   useEffect(() => {
-    const storedContacts = localStorage.getItem(STORAGE_KEY);
+    const storedContacts = localStorage.getItem('contacts');
     if (storedContacts) {
       setState(prevState => ({
         ...prevState,
@@ -36,7 +32,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state.contacts));
+    localStorage.setItem('contacts', JSON.stringify(state.contacts));
   }, [state.contacts]);
 
   const handleAddContact = newContact => {
@@ -50,6 +46,7 @@ export default function App() {
       setState(prevState => ({
         ...prevState,
         contacts: [...prevState.contacts, newContact],
+        divHeight: prevState.divHeight + 60,
       }));
     }
   };
@@ -58,7 +55,11 @@ export default function App() {
     const updatedContacts = state.contacts.filter(
       contact => contact.id !== contactId
     );
-    setState({ ...state, contacts: updatedContacts });
+    setState({
+      ...state,
+      contacts: updatedContacts,
+      divHeight: state.divHeight - 60,
+    });
   };
 
   return (
@@ -68,7 +69,10 @@ export default function App() {
         <ContactForm onSubmit={handleAddContact} />
       </div>
 
-      <div className={styles.contacts}>
+      <div
+        className={styles.contacts}
+        style={{ height: `${state.divHeight}px` }}
+      >
         <h2 className={styles.contacts_title}>Contacts</h2>
         <Filter
           value={state.filter}
