@@ -22,8 +22,8 @@ export default function App() {
   };
   const [state, setState] = useState(data);
 
-  if (state.contacts > 4) {
-    setState({ divHeight: state.contacts.length * 60 + 60 });
+  if (state.contacts.length > 4) {
+    setState({ divHeight: state.contacts.length * 60 });
   }
 
   useEffect(() => {
