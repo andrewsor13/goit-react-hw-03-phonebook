@@ -21,11 +21,6 @@ export default function App() {
     divHeight: 300,
   });
 
-  const updateDivHeight = () => {
-    const height = state.contacts.length * 60;
-    setState({ divHeight: height });
-  };
-
   useEffect(() => {
     const storedContacts = localStorage.getItem('contacts');
     if (storedContacts) {
@@ -53,8 +48,7 @@ export default function App() {
       setState(prevState => ({
         ...prevState,
         contacts: [...prevState.contacts, newContact],
-        divHeight:
-          state.contacts.length === 0 ? 60 : state.contacts.length * 60,
+        divHeight: state.divHeight + 60,
       }));
     }
   };
@@ -66,7 +60,7 @@ export default function App() {
     setState({
       ...state,
       contacts: updatedContacts,
-      divHeight: state.contacts.length === 0 ? 60 : state.contacts.length * 60,
+      divHeight: state.divHeight - 60,
     });
   };
 
