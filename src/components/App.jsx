@@ -22,10 +22,6 @@ export default function App() {
   };
   const [state, setState] = useState(data);
 
-  if (state.contacts.length > 4) {
-    setState({ divHeight: state.contacts.length * 60 });
-  }
-
   useEffect(() => {
     const storedContacts = localStorage.getItem('contacts');
     if (storedContacts) {
@@ -50,11 +46,15 @@ export default function App() {
     if (isNameAlreadyExist) {
       alert(`Contact with the name '${newContact.name}' already exists.`);
     } else {
-      setState(prevState => ({
-        ...prevState,
-        contacts: [...prevState.contacts, newContact],
-        divHeight: state.divHeight + 60,
-      }));
+      if (state.contacts.length >= 1) {
+        setState(prevState => ({
+          ...prevState,
+          contacts: [...prevState.contacts, newContact],
+          divHeight: state.divHeight + 60,
+        }));
+      } else {
+        setState({ divHeight: 60 });
+      }
     }
   };
 
