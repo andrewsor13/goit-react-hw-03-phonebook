@@ -18,7 +18,7 @@ export default function App() {
     filter: '',
     name: '',
     number: '',
-    divHeight: 300,
+    divHeight: 0,
   };
 
   const arrayData = localStorage.getItem('contacts');
