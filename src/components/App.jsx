@@ -18,7 +18,7 @@ export default function App() {
     filter: '',
     name: '',
     number: '',
-    divHeight: 0,
+    divHeight: 300,
   };
 
   const [state, setState] = useState(data);
@@ -50,13 +50,8 @@ export default function App() {
       setState(prevState => ({
         ...prevState,
         contacts: [...prevState.contacts, newContact],
+        divHeight: state.divHeight + 60,
       }));
-      const arrayData = localStorage.getItem('contacts');
-      if (arrayData.length > 0) {
-        data.divHeight = data.contacts.length * 60 + 60;
-      } else {
-        data.divHeight = 60;
-      }
     }
   };
 
@@ -67,13 +62,8 @@ export default function App() {
     setState({
       ...state,
       contacts: updatedContacts,
+      divHeight: state.divHeight - 60,
     });
-    const arrayData = localStorage.getItem('contacts');
-    if (arrayData.length > 0) {
-      data.divHeight = data.contacts.length * 60 + 60;
-    } else {
-      data.divHeight = 60;
-    }
   };
 
   return (
