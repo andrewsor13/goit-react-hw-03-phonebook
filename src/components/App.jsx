@@ -20,6 +20,12 @@ export default function App() {
     number: '',
     divHeight: 300,
   };
+
+  if (data.contacts.length > 0) {
+    data.divHeight = data.contacts.length * 60 + 60;
+  } else {
+    data.divHeight = 60;
+  }
   const [state, setState] = useState(data);
 
   useEffect(() => {
@@ -46,15 +52,11 @@ export default function App() {
     if (isNameAlreadyExist) {
       alert(`Contact with the name '${newContact.name}' already exists.`);
     } else {
-      if (state.contacts.length >= 1) {
-        setState(prevState => ({
-          ...prevState,
-          contacts: [...prevState.contacts, newContact],
-          divHeight: state.divHeight + 60,
-        }));
-      } else {
-        setState({ divHeight: 60 });
-      }
+      setState(prevState => ({
+        ...prevState,
+        contacts: [...prevState.contacts, newContact],
+        divHeight: state.divHeight + 60,
+      }));
     }
   };
 
