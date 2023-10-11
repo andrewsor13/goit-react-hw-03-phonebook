@@ -21,7 +21,8 @@ export default function App() {
     divHeight: 300,
   };
 
-  if (data.contacts.length > 0) {
+  const arrayData = localStorage.getItem('contacts');
+  if (arrayData.length > 0) {
     data.divHeight = data.contacts.length * 60 + 60;
   } else {
     data.divHeight = 60;
