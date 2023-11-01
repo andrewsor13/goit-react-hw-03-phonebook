@@ -5,7 +5,7 @@ import styles from './ContactList.module.css';
 
 export default function ContactList({ contacts, filter, onDeleteContact }) {
   const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+    contact.name.toLowerCase().includes(filter?.toLowerCase())
   );
 
   return (
