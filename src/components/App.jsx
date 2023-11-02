@@ -13,7 +13,7 @@ const initialContacts = [
 ];
 
 export default function App() {
-  const data = {
+  let data = {
     contacts: initialContacts,
     filter: '',
     name: '',
@@ -52,6 +52,7 @@ export default function App() {
         contacts: [...prevState.contacts, newContact],
         divHeight: state.divHeight + 60,
       }));
+      data.divHeight = state.divHeight;
     }
   };
 
@@ -64,6 +65,8 @@ export default function App() {
       contacts: updatedContacts,
       divHeight: state.divHeight - 60,
     });
+    data.divHeight = state.divHeight;
+
   };
 
   return (
